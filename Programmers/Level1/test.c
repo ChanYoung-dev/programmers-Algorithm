@@ -1,12 +1,21 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
+//약수의 개수 구하기
+int factoramount(int number){
+    int i=1;
+    int sum=0;
+    for(i;i<=number/2;i++)
+        if(number%i==0)
+            sum++;
+    return sum+1;
+}
 
-// absolutes_len은 배열 absolutes의 길이입니다.
-// signs_len은 배열 signs의 길이입니다.
-int solution(int absolutes[], size_t absolutes_len, bool signs[], size_t signs_len) {
-    int answer=0;
-    for(int i=0;i<absolutes_len;i++)
-        answer+=signs[i] ? (1*absolutes[i]) : (absolutes[i]*(-1));
+
+int solution(int left, int right) {
+    int answer = 0;
+    int j=0;
+    for(j = left;j <=right;j++)
+        (factoramount(j)%2) ? (answer += (-1*j)) : (answer += j);
     return answer;
 }

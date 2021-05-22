@@ -1,21 +1,9 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
-//약수의 개수 구하기
-int factoramount(int number){
-    int i=1;
-    int sum=0;
-    for(i;i<=number/2;i++)
-        if(number%i==0)
-            sum++;
-    return sum+1;
-}
-
-
-int solution(int left, int right) {
-    int answer = 0;
-    int j=0;
-    for(j = left;j <=right;j++)
-        (factoramount(j)%2) ? (answer += (-1*j)) : (answer += j);
+int solution(int n) {
+    int i = 0,answer = 0,tenN = 1, arr[20];
+    for(;n!=0;arr[i]=n%3,n/=3,i++){}
+    for(--i;i>=0;answer+=arr[i]*tenN,i--,tenN*=3){}
     return answer;
 }

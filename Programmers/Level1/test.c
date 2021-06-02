@@ -31,14 +31,17 @@ int* solution(int numbers[], size_t numbers_len) {
         if(i != min){
             SWAP(answer[i], answer[min], temp);
         }
+        // 새로운 배열에 넣는다./ 중복제거를 위해
         arr[h]=answer[i];
         printf("%d번째 %d 삽입 ",h+1,arr[h]);
+        //중복제거
         if(arr[h]!=arr[h-1])
         {
             h++;
         }
     }
     printf("arr[%d]번쨰 : %d, answer[%d]번째: %d",h,arr[h],i,answer[i]);
+    //마지막 배열 숫자 삽입
     arr[h]=answer[i];
     printf("arr[h+1] : %d",arr[h]);
     for(i=0;i<len;i++)

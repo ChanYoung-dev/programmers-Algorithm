@@ -2,18 +2,22 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-char* solution(int a, int b) {
-    // 리턴할 값은 메모리를 동적 할당해주세요.
-    char* list[7]={"FRI","SAT","SUN","MON","TUE","WED","THU"};
-    int day[12] = {31,29,31,30,31,30,31,31,30,31,30,31};
-    int countday=0;
-    //월 계산
-    for(int i=1;i<a;i++)
-        countday+=day[i-1];
-    //일 계산
-    countday+=(b-1);
-    char* answer = (char*)malloc(3);
-    answer=list[(countday%7)];
-    
+// 파라미터로 주어지는 문자열은 const로 주어집니다. 변경하려면 문자열을 복사해서 사용하세요.
+char* solution(const char* s) {
+    char* answer;
+    int c = strlen(s);
+    if(c % 2)
+    {
+        answer = (char*)malloc(2);
+        answer[0] = s[c/2];
+        answer[1] = '\0';
+    }
+    else
+    {
+        answer = (char*)malloc(3);
+        answer = &(s[c/2-1]);
+        //answer[1] = s[c/2];
+        answer[2] = '\0';
+    }
     return answer;
 }

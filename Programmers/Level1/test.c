@@ -1,23 +1,24 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
 #include <stdlib.h>
 
-// 파라미터로 주어지는 문자열은 const로 주어집니다. 변경하려면 문자열을 복사해서 사용하세요.
-char* solution(const char* s) {
-    char* answer;
-    int c = strlen(s);
-    if(c % 2)
-    {
-        answer = (char*)malloc(2);
-        answer[0] = s[c/2];
-        answer[1] = '\0';
-    }
-    else
-    {
-        answer = (char*)malloc(3);
-        answer = &(s[c/2-1]);
-        //answer[1] = s[c/2];
-        answer[2] = '\0';
+char* solution(int n) {
+    // 리턴할 값은 메모리를 동적 할당해주세요.
+    
+    
+    char* su="수";
+    char* bak="박";
+    
+    printf("%d",strlen(su)); //글자는 하나당 3크기 체크
+    
+    char* answer = (char*)malloc(sizeof(char)*n*3); //n개 * 3(한글자크기)
+    strcpy(answer, ""); //answer 초기화
+    for(int i=0;i<n;i++){
+        if(i%2==0)
+            strcat(answer,su);
+        else
+            strcat(answer,bak);
     }
     return answer;
 }

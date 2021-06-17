@@ -2,25 +2,20 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-int solution(int num) {
-    int answer = 0;
-    int i;
-    
-    for(i=0;i<=500;i++){
-        printf("%d->",num);
-        //짝수일때
-        if(num%2==0)
-            num/=2;
-        else if(num==1)
-            return i;
-        //홀수일때
-        else if(num%2==1)
-            num = num*3+1;
-        //횟수가 500이상일때
-        
-        printf("%d\n",num);
+bool solution(int x) {
+    int i=5;
+    int sum=0;
+    int originalX;
+    bool answer = true;
+    //최대 자릿수 구하기
+    for(i=1;(x/i)>=10;i*=10){}
+    originalX=x;
+    //자릿수 더하기
+    for(;i>=1;i/=10){
+        sum+=(x/i);
+        x -=( (x/i)*i );
     }
-    printf("최종 : %d\n",num);
-    if(i>500)
-        return -1;
+    if(originalX%sum!=0)
+        return false;
+    return answer;
 }

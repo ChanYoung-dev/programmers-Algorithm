@@ -1,19 +1,26 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
-#define _CRT_SECURE_NO_WARNINGS
 
-int solution(int n) {
+int solution(int num) {
     int answer = 0;
-    char* str=(char*)malloc(sizeof(char)*10);
-    sprintf(str,"%d",n);
     int i;
     
-    for(i=0;(int)str[i]>47 && (int)str[i]<59;i++)
-    {
-        answer+=( (int)str[i]-48 );
+    for(i=0;i<=500;i++){
+        printf("%d->",num);
+        //짝수일때
+        if(num%2==0)
+            num/=2;
+        else if(num==1)
+            return i;
+        //홀수일때
+        else if(num%2==1)
+            num = num*3+1;
+        //횟수가 500이상일때
+        
+        printf("%d\n",num);
     }
-    printf("%d",(int)str[0]-48);
-    
-    return answer;
+    printf("최종 : %d\n",num);
+    if(i>500)
+        return -1;
 }

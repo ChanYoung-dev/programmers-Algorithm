@@ -1,24 +1,36 @@
-#include <stdio.h>
-#include <stdbool.h>
-#include <string.h>
-#include <stdlib.h>
-
-char* solution(int n) {
-    // 리턴할 값은 메모리를 동적 할당해주세요.
-    
-    
-    char* su="수";
-    char* bak="박";
-    
-    printf("%d",strlen(su));
-    
-    char* answer = (char*)malloc(sizeof(char)*n*3); 
-    //strcpy(answer, ""); //answer 초기화
-    for(int i=0;i<n;i++){
-        if(i%2==0)
-            strcat(answer,su);
-        else
-            strcat(answer,bak);
+#include<memory.h> //#include<string.h>
+#include<stdio.h>
+ 
+void printAll(int* pArr, int len)
+{
+    for (int i = 0; i < len; ++i)
+    {
+        printf("%d ", *(pArr + i));
     }
-    return answer;
+ 
+    printf("\n\n");
+}
+ 
+int solution(void)
+{
+    // 배열 초기화 for 문 이용
+    int arr1[20];
+    /*
+    for (int i = 0; i < 20; ++i)
+    {
+        arr1[i] = 0;
+    }
+ */
+    printf("for    : ");
+    printAll(arr1, 20);
+ 
+ 
+    // 배열 초기화 memset 함수이용
+    int arr2[20];
+    memset(arr2, 0, 20 * sizeof(int));
+ 
+    printf("memset : ");
+    printAll(arr2, 20);
+ 
+    return 0;
 }

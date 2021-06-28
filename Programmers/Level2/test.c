@@ -1,3 +1,7 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
 typedef char Data;
 typedef struct _Node{
     Data data;
@@ -44,4 +48,65 @@ Data SPeek(Stack * pstack){
         exit(-1);
     }
     return pstack->head->data;
+}
+// 파라미터로 주어지는 문자열은 const로 주어집니다. 변경하려면 문자열을 복사해서 사용하세요.
+int solution(const char* s) {
+    int answer = 0;
+    Data *s_copy2=s;
+    
+    int x=1;
+    Stack stack;
+    stackInit(&stack);
+    
+    int i,j;
+    for(j=0;j<strlen(s);j++)
+    {
+        x=1;
+        for(i=0;i<strlen(s);i++)
+        {
+            if(s_copy2[i]=='[' || s_copy2[i]=='(' || s_copy2[i]=='{')
+                SPush(&stack,s_copy2[i]);
+            else{
+                if(!SisEmpty(&stack)){
+                    if(s_copy2[i]==']' && SPeek(&stack)=='[')
+                        SPop(&stack);
+                    else if(s_copy2[i]=='}' && SPeek(&stack)=='{')
+                        SPop(&stack);
+                    else if(s_copy2[i]==')' && SPeek(&stack)=='(')
+                        SPop(&stack);
+                    else{
+                        x=0;
+                        break;
+                    }
+                }
+                else{
+                    x=0;
+                    break;
+                }
+            }
+            
+        }
+        if(!SisEmpty(&stack))
+            x=0;
+        if(x!=0){
+            printf("answer : %d",++answer);
+        }
+        s_copy2=rotate(s_copy2,strlen(s));
+    }   
+    return answer;
+}
+char* rotate(char *copy,int len){
+    char *s_copy=(char*)malloc(len);
+    int i;
+    for(i=0;i<len;i++)
+        s_copy[i]=copy[i+1];
+    s_copy[len-1]=copy[0];
+    
+    //printf("함수안에서의 배열 : ");
+    //for(i=0;i<len;i++)
+        //printf("%c",s_copy[i]);
+        
+    //printf("\n"); 
+    
+    return s_copy;
 }
